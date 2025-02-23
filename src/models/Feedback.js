@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-const FeedbackSchema = new Schema()(
+const FeedbackSchema = new Schema(
   {
     name: {
       type: String,

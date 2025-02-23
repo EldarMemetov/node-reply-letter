@@ -3,23 +3,23 @@ import Joi from 'joi';
 export const validateFeedback = (data) => {
   const schema = Joi.object({
     name: Joi.string().min(2).required().messages({
-      'string.min': 'Имя должно содержать минимум 2 символа',
-      'any.required': 'Имя обязательно',
+      'string.min': 'Name must be at least 2 characters long',
+      'any.required': 'Name is required',
     }),
     email: Joi.string().email().required().messages({
-      'string.email': 'Некорректный email',
-      'any.required': 'Email обязателен',
+      'string.email': 'Invalid email address',
+      'any.required': 'Email is required',
     }),
     phone: Joi.string()
       .pattern(/^\+?[1-9]\d{1,14}$/)
       .required()
       .messages({
-        'string.pattern.base': 'Некорректный номер телефона',
-        'any.required': 'Телефон обязателен',
+        'string.pattern.base': 'Invalid phone number',
+        'any.required': 'Phone number is required',
       }),
     message: Joi.string().min(5).required().messages({
-      'string.min': 'Сообщение должно содержать минимум 5 символов',
-      'any.required': 'Сообщение обязательно',
+      'string.min': 'Message must be at least 5 characters long',
+      'any.required': 'Message is required',
     }),
   });
 
