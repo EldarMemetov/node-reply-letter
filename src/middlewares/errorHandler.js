@@ -7,8 +7,6 @@ const errorHandler = (error, req, res, next) => {
     status,
     message: message || 'Something went wrong',
   });
-
-  next();
 };
 
 export default errorHandler;
