@@ -4,20 +4,24 @@ const ReviewSchema = new Schema(
   {
     name: {
       type: String,
-      require: true,
-    },
-    text: {
-      type: String,
-      require: true,
+      required: true,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
     },
   },
-  { versionKey: false, timestamps: true },
+  { timestamps: true, versionKey: false },
 );
 
-const ReviewLetter = model('review', ReviewSchema);
+const Review = model('Review', ReviewSchema);
 
-export default ReviewLetter;
+export default Review;

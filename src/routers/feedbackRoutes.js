@@ -20,6 +20,6 @@ const sendFeedback = async (req, res) => {
   res.status(201).json({ message: '✅ Feedback sent successfully!' });
 };
 
-router.post('/feedback', ctrlWrapper(sendFeedback));
+router.post('/', ctrlWrapper(sendFeedback));
 
 export default router;

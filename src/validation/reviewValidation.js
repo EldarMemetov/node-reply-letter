@@ -6,7 +6,7 @@ export const ReviewValidation = (data) => {
       'string.min': 'Name must be at least 2 characters long',
       'any.required': 'Name is required',
     }),
-    message: Joi.string().min(5).required().messages({
+    text: Joi.string().min(5).required().messages({
       'string.min': 'Message must be at least 5 characters long',
       'any.required': 'Message is required',
     }),
