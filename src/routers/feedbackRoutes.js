@@ -1,5 +1,5 @@
 import express from 'express';
-import FeedbackLetter from '../models/Feedback.js';
+import FeedbackLetter from '../db/models/Feedback.js';
 import { validateFeedback } from '../validation/feedbackValidator.js';
 import { sendMail } from '../utils/mailer.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
