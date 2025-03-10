@@ -1,3 +1,4 @@
+import createError from 'http-errors';
 import { validateFeedback } from '../validation/feedbackValidation.js';
 import { sendEmail } from '../utils/emailService.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
@@ -5,7 +6,7 @@ import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 const sendFeedback = async (req, res) => {
   const { error } = validateFeedback(req.body);
   if (error) {
-    throw new Error(error.details[0].message);
+    throw createError(400, error.details[0].message);
   }
 
   const { name, email, phone, message } = req.body;

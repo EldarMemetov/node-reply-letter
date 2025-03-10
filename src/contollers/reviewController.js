@@ -1,20 +1,22 @@
 import createError from 'http-errors';
 import Review from '../db/models/reviewsModel.js';
-import { filterReviews } from '../services/reviewService.js';
+import { FilterReviews } from '../services/reviewService.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
+import { ReviewValidation } from '../validation/reviewValidation.js';
 
 export const getAllReviews = async (req, res) => {
   const { sortOrder } = req.query;
-  const reviews = await filterReviews(sortOrder);
+  const reviews = await FilterReviews(sortOrder);
   res.json(reviews);
 };
 
 const addReview = async (req, res) => {
-  const { name, email, text } = req.body;
-
-  if (!name || !email || !text) {
-    throw createError(400, 'All fields are required');
+  const { error } = ReviewValidation(req.body);
+  if (error) {
+    throw createError(400, error.details[0].message);
   }
+
+  const { name, email, text } = req.body;
 
   const newReview = new Review({ name, email, text });
   await newReview.save();
