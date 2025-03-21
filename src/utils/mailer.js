@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import { env } from '../utils/env.js';
 
-export const sendMail = async ({ name, email, phone, message }) => {
+export const sendMail = async ({ name, email, message }) => {
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -19,8 +19,6 @@ export const sendMail = async ({ name, email, phone, message }) => {
       text: `
         📩 New message from ${name}
         ✉ Email: ${email}
-        📞 Phone: ${phone}
-
         💬 Message:
         ${message}
       `,

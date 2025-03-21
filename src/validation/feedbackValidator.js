@@ -10,13 +10,7 @@ export const validateFeedback = (data) => {
       'string.email': 'Invalid email address',
       'any.required': 'Email is required',
     }),
-    phone: Joi.string()
-      .pattern(/^\+?[1-9]\d{1,14}$/)
-      .required()
-      .messages({
-        'string.pattern.base': 'Invalid phone number',
-        'any.required': 'Phone number is required',
-      }),
+
     message: Joi.string().min(5).required().messages({
       'string.min': 'Message must be at least 5 characters long',
       'any.required': 'Message is required',

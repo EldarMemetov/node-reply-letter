@@ -9,12 +9,12 @@ const sendFeedback = async (req, res) => {
     throw createError(400, error.details[0].message);
   }
 
-  const { name, email, phone, message } = req.body;
+  const { name, email, message } = req.body;
 
   await sendEmail(
     'your-email@gmail.com',
     'New message from the website',
-    `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
+    `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
   );
 
   res.status(200).json({ message: 'Email successfully sent!' });
