@@ -15,6 +15,10 @@ export const validateFeedback = (data) => {
       'string.min': 'Message must be at least 5 characters long',
       'any.required': 'Message is required',
     }),
+    agree: Joi.boolean().valid(true).required().messages({
+      'any.only': 'You must agree to the privacy policy',
+      'any.required': 'Agreement to privacy policy is required',
+    }),
   });
 
   return schema.validate(data);

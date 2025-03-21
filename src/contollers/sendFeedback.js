@@ -9,7 +9,11 @@ const sendFeedback = async (req, res) => {
     throw createError(400, error.details[0].message);
   }
 
-  const { name, email, message } = req.body;
+  const { name, email, message, agree } = req.body;
+
+  if (!agree) {
+    throw createError(400, 'You must agree to the privacy policy');
+  }
 
   await sendEmail(
     'your-email@gmail.com',
