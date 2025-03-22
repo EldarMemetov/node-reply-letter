@@ -22,7 +22,7 @@ const addReview = async (req, res) => {
     throw createError(400, 'You must agree to the privacy policy');
   }
 
-  const newReview = new Review({ name, email, text });
+  const newReview = new Review({ name, email, text, agree });
   await newReview.save();
   res.status(201).json({ message: 'Review added', review: newReview });
 };
