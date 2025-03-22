@@ -16,7 +16,11 @@ const addReview = async (req, res) => {
     throw createError(400, error.details[0].message);
   }
 
-  const { name, email, text } = req.body;
+  const { name, email, text, agree } = req.body;
+
+  if (!agree) {
+    throw createError(400, 'You must agree to the privacy policy');
+  }
 
   const newReview = new Review({ name, email, text });
   await newReview.save();

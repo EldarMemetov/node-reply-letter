@@ -10,9 +10,12 @@ const FeedbackSchema = new Schema(
       type: String,
       required: true,
     },
-
     message: {
       type: String,
+      required: true,
+    },
+    agree: {
+      type: Boolean,
       required: true,
     },
   },

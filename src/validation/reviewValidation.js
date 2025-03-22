@@ -14,6 +14,10 @@ export const ReviewValidation = (data) => {
       'string.email': 'Invalid email address',
       'any.required': 'Email is required',
     }),
+    agree: Joi.boolean().valid(true).required().messages({
+      'any.only': 'You must agree to the privacy policy',
+      'any.required': 'Agreement to privacy policy is required',
+    }),
   });
   return schema.validate(data);
 };
