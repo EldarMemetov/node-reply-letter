@@ -11,7 +11,6 @@ export const sendMail = async ({ name, email, message }) => {
       },
     });
 
-    // Email settings
     const mailOptions = {
       from: `"Feedback Form" <${env('EMAIL_USER')}>`,
       to: env('EMAIL_RECEIVER'),
@@ -27,7 +26,7 @@ export const sendMail = async ({ name, email, message }) => {
     await transporter.sendMail(mailOptions);
     console.log('📧 Email successfully sent!');
   } catch (error) {
-    console.error('Error while sending email:', error);
+    console.error('Error while  email:', error);
     throw new Error('Failed to send email');
   }
 };
