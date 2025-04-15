@@ -8,86 +8,115 @@ import {
 } from '../blogs/blogId.js';
 import { validateBlog } from '../validation/blogValidator.js';
 
-export const getAllBlogsController = async (req, res) => {
-  const perPage = parseInt(req.query.perPage) || 10;
-  const page = parseInt(req.query.page) || 1;
-  const sortBy = req.query.sortBy || '_id';
+export const getAllBlogsController = async (req, res, next) => {
+  try {
+    const perPage = parseInt(req.query.perPage) || 10;
+    const page = parseInt(req.query.page) || 1;
+    const sortBy = req.query.sortBy || '_id';
+    const sortOrder = req.query.sortOrder ? parseInt(req.query.sortOrder) : 1;
 
-  const sortOrder = req.query.sortOrder ? parseInt(req.query.sortOrder) : 1;
+    const filter = {};
+    if (req.query.theme) {
+      filter.theme = req.query.theme;
+    }
 
-  const filter = {};
-  if (req.query.theme) {
-    filter.theme = req.query.theme;
+    const data = await getBlogs({
+      perPage,
+      page,
+      sortBy,
+      sortOrder,
+      filter,
+    });
+
+    res.json({
+      status: 200,
+      message: 'Successfully found blog posts!',
+      data,
+    });
+  } catch (err) {
+    next(err);
   }
-
-  const data = await getBlogs({
-    perPage,
-    page,
-    sortBy,
-    sortOrder,
-    filter,
-  });
-
-  res.json({
-    status: 200,
-    message: 'Successfully found blog posts!',
-    data,
-  });
 };
 
-export const getBlogByIdController = async (req, res) => {
+export const getBlogByIdController = async (req, res, next) => {
   const { id } = req.params;
-  const data = await getBlogById(id);
-  if (!data) {
-    throw createHttpError(404, `Blog post with id=${id} not found`);
+
+  try {
+    const data = await getBlogById(id);
+    if (!data) {
+      throw createHttpError(404, `Blog post with id=${id} not found`);
+    }
+
+    await data.updateOne({ $inc: { views: 1 } });
+
+    res.json({
+      status: 200,
+      message: `Blog post ${id}`,
+      data,
+    });
+  } catch (err) {
+    next(err);
   }
-  res.json({
-    status: 200,
-    message: `Blog post ${id}`,
-    data,
-  });
 };
 
-export const addBlogController = async (req, res) => {
-  const { error } = validateBlog(req.body);
-  if (error) {
-    throw createHttpError(400, error.details.map((e) => e.message).join(', '));
+export const addBlogController = async (req, res, next) => {
+  try {
+    const { error } = validateBlog(req.body);
+    if (error) {
+      throw createHttpError(
+        400,
+        error.details.map((e) => e.message).join(', '),
+      );
+    }
+
+    const payload = req.body;
+    const data = await createBlog(payload);
+
+    res.status(201).json({
+      status: 201,
+      message: 'Successfully created blog post!',
+      data,
+    });
+  } catch (err) {
+    next(err);
   }
-
-  const payload = req.body;
-  const data = await createBlog(payload);
-
-  res.status(201).json({
-    status: 201,
-    message: 'Successfully created blog post!',
-    data,
-  });
 };
 
-export const updateBlogController = async (req, res) => {
-  const { error } = validateBlog(req.body);
-  if (error) {
-    throw createHttpError(400, error.details.map((e) => e.message).join(', '));
-  }
+export const updateBlogController = async (req, res, next) => {
+  try {
+    const { error } = validateBlog(req.body);
+    if (error) {
+      throw createHttpError(
+        400,
+        error.details.map((e) => e.message).join(', '),
+      );
+    }
 
-  const { id } = req.params;
-  const data = await updateBlog(id, req.body);
-  if (!data) {
-    throw createHttpError(404, `Blog post with id=${id} not found`);
-  }
+    const { id } = req.params;
+    const data = await updateBlog(id, req.body);
+    if (!data) {
+      throw createHttpError(404, `Blog post with id=${id} not found`);
+    }
 
-  res.json({
-    status: 200,
-    message: 'Successfully updated blog post!',
-    data,
-  });
+    res.json({
+      status: 200,
+      message: 'Successfully updated blog post!',
+      data,
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
-export const deleteBlogController = async (req, res) => {
-  const { id } = req.params;
-  const data = await deleteBlog(id);
-  if (!data) {
-    throw createHttpError(404, `Blog post with id=${id} not found`);
+export const deleteBlogController = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const data = await deleteBlog(id);
+    if (!data) {
+      throw createHttpError(404, `Blog post with id=${id} not found`);
+    }
+    res.status(204).send();
+  } catch (err) {
+    next(err);
   }
-  res.status(204).send();
 };

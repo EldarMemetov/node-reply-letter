@@ -13,14 +13,12 @@ const BlogPostSchema = new Schema(
       ua: { type: String, required: true },
     },
     image: { type: String, required: true },
-
     theme: { type: String, enum: ['video', 'web'], required: true },
-
-    // createdAt: { type: Date, default: Date.now },
-    // updatedAt: { type: Date, default: Date.now },
+    views: { type: Number, default: 0 },
   },
   { versionKey: false, timestamps: true },
 );
+
 const BlogPost = model('BlogPost', BlogPostSchema);
 
 export default BlogPost;
