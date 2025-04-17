@@ -14,6 +14,13 @@ export const ReviewValidation = (data) => {
       'string.email': 'Invalid email address',
       'any.required': 'Email is required',
     }),
+    rating: Joi.number().integer().min(1).max(5).required().messages({
+      'number.base': 'Rating must be a number',
+      'number.integer': 'Rating must be an integer',
+      'number.min': 'Rating must be at least 1',
+      'number.max': 'Rating cannot exceed 5',
+      'any.required': 'Rating is required',
+    }),
     agree: Joi.boolean().valid(true).required().messages({
       'any.only': 'You must agree to the privacy policy',
       'any.required': 'Agreement to privacy policy is required',
