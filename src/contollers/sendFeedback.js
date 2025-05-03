@@ -1,27 +1,19 @@
+import { validateFeedback } from '../validation/feedbackValidator.js';
+import { notifyAdmin, sendUserReply } from '../utils/notificationService.js';
 import createError from 'http-errors';
-import { validateFeedback } from '../validation/feedbackValidation.js';
-import { sendEmail } from '../utils/emailService.js';
-import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
-const sendFeedback = async (req, res) => {
+export const sendFeedback = async (req, res) => {
   const { error } = validateFeedback(req.body);
-  if (error) {
-    throw createError(400, error.details[0].message);
-  }
+  if (error) throw createError(400, error.details[0].message);
 
   const { name, email, message, agree } = req.body;
+  if (!agree) throw createError(400, 'You must agree to the privacy policy');
 
-  if (!agree) {
-    throw createError(400, 'You must agree to the privacy policy');
-  }
+  await notifyAdmin('feedback', { name, email, message });
 
-  await sendEmail(
-    'your-email@gmail.com',
-    'New message from the website',
-    `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-  );
+  await sendUserReply('feedback', { email });
 
-  res.status(200).json({ message: 'Email successfully sent!' });
+  res
+    .status(201)
+    .json({ message: '✅ Feedback sent and auto-reply delivered!' });
 };
-
-export default ctrlWrapper(sendFeedback);

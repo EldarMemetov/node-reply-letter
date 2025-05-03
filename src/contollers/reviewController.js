@@ -3,6 +3,7 @@ import Review from '../db/models/reviewsModel.js';
 import { FilterReviews } from '../services/reviewService.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { ReviewValidation } from '../validation/reviewValidation.js';
+import { notifyAdmin, sendUserReply } from '../utils/notificationService.js';
 
 export const getAllReviews = async (req, res) => {
   const { sortOrder } = req.query;
@@ -24,6 +25,11 @@ const addReview = async (req, res) => {
 
   const newReview = new Review({ name, email, text, rating, agree });
   await newReview.save();
+
+  await notifyAdmin('review', { name, email, review: text, rating });
+
+  await sendUserReply('review', { email });
+
   res.status(201).json({ message: 'Review added', review: newReview });
 };
 
