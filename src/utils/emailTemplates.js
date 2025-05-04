@@ -4,16 +4,16 @@ export const templates = {
       const subjects = {
         en: 'New message from feedback form',
         de: 'Neue Nachricht vom Feedback-Formular',
-        uk: 'Новое сообщение с формы обратной связи',
+        ua: 'Новое сообщение с формы обратной связи',
       };
       const texts = {
         en: `📩 New message from ${name}\n✉ Sender email: ${email}\n💬 Message:\n${message}`,
         de: `📩 Neue Nachricht von ${name}\n✉ Absender-E-Mail: ${email}\n💬 Nachricht:\n${message}`,
-        uk: `📩 Нове повідомлення від ${name}\n✉ Email відправника: ${email}\n💬 Повідомлення:\n${message}`,
+        ua: `📩 Нове повідомлення від ${name}\n✉ Email відправника: ${email}\n💬 Повідомлення:\n${message}`,
       };
       return {
-        subject: subjects[lang] || subjects.uk,
-        text: texts[lang] || texts.uk,
+        subject: subjects[lang] || subjects.ua,
+        text: texts[lang] || texts.ua,
         attachments: [
           {
             filename: 'logo.png',
@@ -27,7 +27,7 @@ export const templates = {
       const subjects = {
         en: 'Thank you for contacting Qvrix',
         de: 'Danke für Ihre Nachricht an Qvrix',
-        uk: 'Дякуємо за звернення до Qvrix',
+        ua: 'Дякуємо за звернення до Qvrix',
       };
       const bodies = {
         en: `
@@ -52,7 +52,7 @@ export const templates = {
             <p style="font-size:12px; color:#999;">©${new Date().getFullYear()} Qvrix. Alle Rechte vorbehalten.</p>
           </div>
         `,
-        uk: `
+        ua: `
           <div style="font-family: sans-serif; color: #333;">
             <img src="cid:logo@qvrix" alt="Qvrix Logo" style="max-width: 150px; margin-bottom: 20px;" /> 
             <h2>Дякуємо за ваше повідомлення, ${name}!</h2>
@@ -65,8 +65,8 @@ export const templates = {
         `,
       };
       return {
-        subject: subjects[lang] || subjects.uk,
-        html: bodies[lang] || bodies.uk,
+        subject: subjects[lang] || subjects.ua,
+        html: bodies[lang] || bodies.ua,
         attachments: [
           {
             filename: 'logo.png',
@@ -82,12 +82,12 @@ export const templates = {
       const subjects = {
         en: 'New review on website',
         de: 'Neue Bewertung auf der Webseite',
-        uk: 'Новий відгук на сайті',
+        ua: 'Новий відгук на сайті',
       };
       const texts = {
         en: `📝 Review from ${name}\n✉ Email: ${email}\n💬 Review:\n${review}\n⭐ Rating: ${rating}`,
         de: `📝 Bewertung von ${name}\n✉ E-Mail: ${email}\n💬 Bewertung:\n${review}\n⭐ Bewertung: ${rating}`,
-        uk: `📝 Відгук від ${name}\n✉ Email: ${email}\n💬 Відгук:\n${review}\n⭐ Рейтинг: ${rating}`,
+        ua: `📝 Відгук від ${name}\n✉ Email: ${email}\n💬 Відгук:\n${review}\n⭐ Рейтинг: ${rating}`,
       };
       return {
         subject: subjects[lang] || subjects.uk,
@@ -105,7 +105,7 @@ export const templates = {
       const subjects = {
         en: 'Thank you for your review!',
         de: 'Danke für Ihre Bewertung!',
-        uk: 'Дякуємо за ваш відгук!',
+        ua: 'Дякуємо за ваш відгук!',
       };
       const bodies = {
         en: `
@@ -130,7 +130,7 @@ export const templates = {
             <p style="font-size:12px; color:#999;">©${new Date().getFullYear()} Qvrix. Alle Rechte vorbehalten.</p>
           </div>
         `,
-        uk: `
+        ua: `
           <div style="font-family: sans-serif; color: #333;">
             <img src="cid:logo@qvrix" alt="Qvrix Logo" style="max-width: 150px; margin-bottom: 20px;" /> 
             <h2>Дякуємо за ваш відгук, ${name}!</h2>
@@ -143,8 +143,8 @@ export const templates = {
         `,
       };
       return {
-        subject: subjects[lang] || subjects.uk,
-        html: bodies[lang] || bodies.uk,
+        subject: subjects[lang] || subjects.ua,
+        html: bodies[lang] || bodies.ua,
         attachments: [
           {
             filename: 'logo.png',
