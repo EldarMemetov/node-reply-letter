@@ -25,6 +25,10 @@ export const ReviewValidation = (data) => {
       'any.only': 'You must agree to the privacy policy',
       'any.required': 'Agreement to privacy policy is required',
     }),
+    lang: Joi.string().valid('uk', 'en', 'de').required().messages({
+      'any.only': 'Unsupported language',
+      'any.required': 'Language is required',
+    }),
   });
   return schema.validate(data);
 };

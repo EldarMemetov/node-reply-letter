@@ -24,6 +24,11 @@ const ReviewSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    lang: {
+      type: String,
+      enum: ['uk', 'en', 'de'],
+      required: true,
+    },
     createdAt: {
       type: Date,
       default: Date.now,

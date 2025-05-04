@@ -18,6 +18,11 @@ const FeedbackSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    lang: {
+      type: String,
+      enum: ['uk', 'en', 'de'],
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true },
 );

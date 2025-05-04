@@ -17,18 +17,18 @@ const addReview = async (req, res) => {
     throw createError(400, error.details[0].message);
   }
 
-  const { name, email, text, rating, agree } = req.body;
+  const { name, email, text, rating, agree, lang } = req.body;
 
   if (!agree) {
     throw createError(400, 'You must agree to the privacy policy');
   }
 
-  const newReview = new Review({ name, email, text, rating, agree });
+  const newReview = new Review({ name, email, text, rating, agree, lang });
   await newReview.save();
 
-  await notifyAdmin('review', { name, email, review: text, rating });
+  await notifyAdmin('review', { name, email, review: text, rating, lang });
 
-  await sendUserReply('review', { email });
+  await sendUserReply('review', { name, email, lang });
 
   res.status(201).json({ message: 'Review added', review: newReview });
 };
