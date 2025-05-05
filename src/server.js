@@ -42,7 +42,7 @@ import feedbackRoutes from './routers/feedbackRoutes.js';
 import reviewRoutes from './routers/reviewRoutes.js';
 import logger from './middlewares/logger.js';
 import corsOptions from './utils/corsOptions.js';
-import helmet from 'helmet'; // Подключение Helmet для безопасности
+import helmet from 'helmet';
 
 const PORT = Number(env('PORT', '3000'));
 
