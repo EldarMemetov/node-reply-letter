@@ -14,13 +14,6 @@ export const templates = {
       return {
         subject: subjects[lang] || subjects.ua,
         text: texts[lang] || texts.ua,
-        attachments: [
-          {
-            filename: 'logo.png',
-            path: './public/images/logo.png',
-            cid: 'logo@qvrix',
-          },
-        ],
       };
     },
     user: ({ name, email, lang }) => {
@@ -32,7 +25,6 @@ export const templates = {
       const bodies = {
         en: `
           <div style="font-family: sans-serif; color: #333;">
-            <img src="cid:logo@qvrix" alt="Qvrix Logo" style="max-width: 150px; margin-bottom: 20px;" /> 
             <h2>Thank you for your message, ${name}!</h2>
             <p>We have received your message and will get back to you at ${email} shortly.</p>
             <p>Qvrix is your partner in modern web development and video production.</p>
@@ -43,7 +35,6 @@ export const templates = {
         `,
         de: `
           <div style="font-family: sans-serif; color: #333;">
-            <img src="cid:logo@qvrix" alt="Qvrix Logo" style="max-width: 150px; margin-bottom: 20px;" /> 
             <h2>Vielen Dank für Ihre Nachricht, ${name}!</h2>
             <p>Wir haben Ihre Nachricht erhalten und melden uns in Kürze unter ${email} bei Ihnen.</p>
             <p>Qvrix ist Ihr Partner für moderne Webentwicklung und Videoproduktion.</p>
@@ -54,7 +45,6 @@ export const templates = {
         `,
         ua: `
           <div style="font-family: sans-serif; color: #333;">
-            <img src="cid:logo@qvrix" alt="Qvrix Logo" style="max-width: 150px; margin-bottom: 20px;" /> 
             <h2>Дякуємо за ваше повідомлення, ${name}!</h2>
             <p>Ми отримали ваше повідомлення і найближчим часом напишемо вам на ${email}.</p>
             <p>Qvrix — ваш партнер у галузі сучасної веб-розробки та відео-продукції.</p>
@@ -67,13 +57,6 @@ export const templates = {
       return {
         subject: subjects[lang] || subjects.ua,
         html: bodies[lang] || bodies.ua,
-        attachments: [
-          {
-            filename: 'logo.png',
-            path: './public/images/logo.png',
-            cid: 'logo@qvrix',
-          },
-        ],
       };
     },
   },
@@ -90,15 +73,8 @@ export const templates = {
         ua: `📝 Відгук від ${name}\n✉ Email: ${email}\n💬 Відгук:\n${review}\n⭐ Рейтинг: ${rating}`,
       };
       return {
-        subject: subjects[lang] || subjects.uk,
-        text: texts[lang] || texts.uk,
-        attachments: [
-          {
-            filename: 'logo.png',
-            path: './public/images/logo.png',
-            cid: 'logo@qvrix',
-          },
-        ],
+        subject: subjects[lang] || subjects.ua,
+        text: texts[lang] || texts.ua,
       };
     },
     user: ({ name, email, lang }) => {
@@ -110,7 +86,6 @@ export const templates = {
       const bodies = {
         en: `
           <div style="font-family: sans-serif; color: #333;">
-            <img src="cid:logo@qvrix" alt="Qvrix Logo" style="max-width: 150px; margin-bottom: 20px;" /> 
             <h2>Thank you for your review, ${name}!</h2>
             <p>We greatly appreciate your feedback and will continue improving our services to serve you better.</p>
             <p>You will receive any follow-up at ${email} if needed.</p>
@@ -121,7 +96,6 @@ export const templates = {
         `,
         de: `
           <div style="font-family: sans-serif; color: #333;">
-            <img src="cid:logo@qvrix" alt="Qvrix Logo" style="max-width: 150px; margin-bottom: 20px;" /> 
             <h2>Vielen Dank für Ihre Bewertung, ${name}!</h2>
             <p>Wir schätzen Ihr Feedback sehr und werden unsere Dienstleistungen weiter verbessern, um Sie besser zu bedienen.</p>
             <p>Bei Bedarf erhalten Sie eine Rückmeldung an ${email}.</p>
@@ -132,7 +106,6 @@ export const templates = {
         `,
         ua: `
           <div style="font-family: sans-serif; color: #333;">
-            <img src="cid:logo@qvrix" alt="Qvrix Logo" style="max-width: 150px; margin-bottom: 20px;" /> 
             <h2>Дякуємо за ваш відгук, ${name}!</h2>
             <p>Ми дуже цінуємо ваш відгук і продовжимо покращувати наші послуги, щоб краще вам служити.</p>
             <p>У разі потреби ви отримаєте відповідь на ${email}.</p>
@@ -145,13 +118,6 @@ export const templates = {
       return {
         subject: subjects[lang] || subjects.ua,
         html: bodies[lang] || bodies.ua,
-        attachments: [
-          {
-            filename: 'logo.png',
-            path: './public/images/logo.png',
-            cid: 'logo@qvrix',
-          },
-        ],
       };
     },
   },
