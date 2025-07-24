@@ -2,6 +2,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   'https://your-production-domain.com',
   'https://web-studio-pied.vercel.app',
+  'https://web-new-studio.vercel.app',
 ];
 
 const corsOptions = {
