@@ -18,6 +18,9 @@ export const sendFeedback = async (req, res, next) => {
       await notifyAdmin('feedback', { name, email, message, lang });
     } catch (err) {
       console.error('🚨 notifyAdmin failed:', err);
+      return res
+        .status(500)
+        .json({ message: 'Failed to send email to admin', error: err.message });
     }
 
     try {
