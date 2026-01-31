@@ -14,12 +14,17 @@ export const sendFeedback = async (req, res, next) => {
       .status(201)
       .json({ message: '✅ Feedback received! We will reply shortly.' });
 
-    notifyAdmin('feedback', { name, email, message, lang }).catch((err) =>
-      console.error('notifyAdmin error:', err),
-    );
-    sendUserReply('feedback', { name, email, lang }).catch((err) =>
-      console.error('sendUserReply error:', err),
-    );
+    try {
+      await notifyAdmin('feedback', { name, email, message, lang });
+    } catch (err) {
+      console.error('🚨 notifyAdmin failed:', err);
+    }
+
+    try {
+      await sendUserReply('feedback', { name, email, lang });
+    } catch (err) {
+      console.error('🚨 sendUserReply failed:', err);
+    }
   } catch (err) {
     next(err);
   }
