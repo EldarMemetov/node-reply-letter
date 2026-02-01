@@ -18,6 +18,7 @@ export const setupServer = () => {
   app.use(logger);
   app.use(express.json());
   app.use(cors(corsOptions));
+  app.options('*', cors(corsOptions));
 
   app.use('/api/feedback', feedbackRoutes);
   app.use('/api/reviews', reviewRoutes);
